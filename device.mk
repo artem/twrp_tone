@@ -21,9 +21,7 @@ $(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
 
 # Ramdisk fstab files
 PRODUCT_COPY_FILES += \
-    device/sony/kagura/rootdir/fstab.qcom:root/fstab.kagura \
-    device/sony/kagura/rootdir/fstab.qcom:root/fstab.qcom \
-    device/sony/kagura/rootdir/fstab.qcom:root/fstab.tone
+    device/sony/kagura/rootdir/fstab.qcom:root/fstab.qcom
 
 # Ramdisk firmware files
 PRODUCT_COPY_FILES += \
