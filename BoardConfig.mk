@@ -17,17 +17,9 @@
 # Board device path
 DEVICE_PATH := device/sony/kagura
 
-# Bootloader
-TARGET_BOOTLOADER_BOARD_NAME := F8331
-
 # Platform
 TARGET_BOARD_PLATFORM := msm8996
-TARGET_BOARD_PLATFORM_GPU := qcom-adreno530
-TARGET_POWERHAL_VARIANT := qcom
 TARGET_NO_BOOTLOADER := true
-TARGET_NO_KERNEL := false
-TARGET_NO_RADIOIMAGE := true
-TARGET_NO_RECOVERY := false
 
 # Architecture
 TARGET_ARCH := arm64
@@ -60,18 +52,13 @@ BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_PAGESIZE := 4096
 BOARD_KERNEL_TAGS_OFFSET := 0x01E00000
 BOARD_RAMDISK_OFFSET := 0x02000000
-BOARD_MKBOOTIMG_ARGS := --ramdisk_offset $(BOARD_RAMDISK_OFFSET)
-BOARD_MKBOOTIMG_ARGS += --tags_offset $(BOARD_KERNEL_TAGS_OFFSET)
 
 # Kernel cmdline
-BOARD_KERNEL_CMDLINE += console=ttyHSL0,115200,n8
-BOARD_KERNEL_CMDLINE += lpm_levels.sleep_disabled=1
-BOARD_KERNEL_CMDLINE += user_debug=31 androidboot.selinux=permissive
-BOARD_KERNEL_CMDLINE += msm_rtb.filter=0x3F ehci-hcd.park=3
-BOARD_KERNEL_CMDLINE += dwc3.maximum_speed=high dwc3_msm.prop_chg_detect=Y
-BOARD_KERNEL_CMDLINE += coherent_pool=8M
-BOARD_KERNEL_CMDLINE += androidboot.hardware=qcom
-BOARD_KERNEL_CMDLINE += enforcing=0
+BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom
+BOARD_KERNEL_CMDLINE += user_debug=31 msm_rtb.filter=0x237 ehci-hcd.park=3
+BOARD_KERNEL_CMDLINE += lpm_levels.sleep_disabled=1 cma=32M@0-0xffffffff coherent_pool=2M
+BOARD_KERNEL_CMDLINE += zram.backend=z3fold
+BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
 
 # Partitions
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 5513412608
@@ -83,29 +70,17 @@ TARGET_USERIMAGES_USE_EXT4 := true
 # Recovery
 BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_HAS_LARGE_FILESYSTEM := true
-BOARD_HAS_NO_MISC_PARTITION := true
 TARGET_HW_DISK_ENCRYPTION := true
-TARGET_KERNEL_HAVE_EXFAT := true
-TARGET_KERNEL_HAVE_NTFS := true
-
-# 64 bits elements
-TARGET_USES_64_BIT_BINDER := true
 
 # TWRP configurations
-BOARD_HAS_NO_SELECT_BUTTON := true
 RECOVERY_SDCARD_ON_DATA := true
 TARGET_RECOVERY_QCOM_RTC_FIX := true
-TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery.fstab
-TARGET_SKIP_SETEXECCON_VOLD_CHECK := true
 TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
-TW_CUSTOM_CPU_TEMP_PATH := /sys/class/thermal/thermal_zone4/temp
+TW_CUSTOM_CPU_TEMP_PATH := /sys/class/thermal/thermal_zone11/temp
 TW_DEFAULT_BRIGHTNESS := 1023
 TW_EXCLUDE_SUPERSU := true
 TW_EXTRA_LANGUAGES := true
-TW_HAS_NO_RECOVERY_PARTITION := true
 TW_IGNORE_ABS_MT_TRACKING_ID := true
 TW_INCLUDE_CRYPTO := true
-TW_INCLUDE_FUSE_EXFAT := true
 TW_INPUT_BLACKLIST := "hbtp_vm"
-TW_NEW_ION_HEAP := true
 TW_THEME := portrait_hdpi
