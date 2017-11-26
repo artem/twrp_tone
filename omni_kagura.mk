@@ -14,16 +14,18 @@
 # limitations under the License.
 #
 
-# Inherit device configurations
-$(call inherit-product, device/sony/kagura/device.mk)
+$(call inherit-product, build/target/product/embedded.mk)
+
+# Inherit from our custom product configuration
+$(call inherit-product, vendor/omni/config/common.mk)
+
+# Time Zone data for recovery
+PRODUCT_COPY_FILES += \
+    bionic/libc/zoneinfo/tzdata:recovery/root/system/usr/share/zoneinfo/tzdata
 
 # Device identification
 PRODUCT_DEVICE := kagura
 PRODUCT_NAME := omni_kagura
-PRODUCT_RELEASE_NAME := kagura
 PRODUCT_BRAND := Sony
 PRODUCT_MANUFACTURER := Sony
-PRODUCT_MODEL := F8331
-
-# Prebuilt kernel
-LOCAL_KERNEL := device/sony/kagura/prebuilts/kernel
+PRODUCT_MODEL := Xperia XZ
